@@ -5,7 +5,7 @@ var cors = require('cors');
 
 var app = express();
 
-var static_path = path.join(__dirname, './../build');
+var static_path = path.join(__dirname, './../app/build');
 
 app.enable('trust proxy');
 

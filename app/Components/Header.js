@@ -1,16 +1,18 @@
-var React = require('react');
+import React, {Component} from 'react'
+import ReactDOM from 'react-dom'
+import { Router, Route, Link } from 'react-router'
 
-module.exports = React.createClass({
-  displayName: 'Header',
+export default class Header extends Component {
 
-  render: function () {
-    return (
-    	<div className='header'>
-    	Posum Kino	
-    	</div>
-		)
+	constructor(props) {
+		super(props)
 	}
 
-});
-
-
+	render(){		
+		return (
+			<div className='header'>
+				Posum Kino
+			</div>
+		);
+	}
+}

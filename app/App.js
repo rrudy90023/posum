@@ -27,14 +27,14 @@ export default class App extends Component {
               <Header/>
               <Nav/>
 
-               <div>App</div>
+               <div></div>
 
               {(this.props.location.pathname === "/calendar") ? 
-                <Calendar calendar={this.state.data[0].calendar}/> :
+                <Calendar calendar={this.state.data.calendar}/> :
                 (this.props.location.pathname === "/about") ?
                 <About /> :
                 (this.props.location.pathname === "/rsvp") ?
-                <Rsvp members={this.state.data[0].members}/> :
+                <Rsvp members={this.state.data.members}/> :
                 null}
 
             </div>)

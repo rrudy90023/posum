@@ -13,9 +13,19 @@ export default class Calendar extends Component {
   }
 
   render(){  
-      console.log("calendar", this.props)
+    console.log("calendar", this.props)
     return(
-      <div>Calendar</div>
+      <div>
+      {this.props.calendar.map((days, index) => 
+        <ul>
+          <li>
+          <span key={index}>{days.location}</span>
+          <span>{days.movie}</span>
+          <span>{days.time}</span>
+          </li>
+        </ul>
+        )}
+      </div>
     )
   }
 }

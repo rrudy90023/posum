@@ -6,12 +6,25 @@ export default class Rsvp extends Component {
 
   constructor(props){
     super(props)
+    this.state ={
+      data: props.data
+    }
   }
 
   render(){
-      console.log("rsvp", this.state.data[0].members)
+      console.log("rsvp", this.props)
     return(
-      <div>Rsvp</div>
+      <div>
+      {this.props.members.map((people, index) =>
+        <ul>
+          <li>
+          <span key={index}>{people.name}</span>
+          <span>{people.email}</span>
+          </li>
+        </ul>
+        )}
+      
+      </div>
     )
   }
 }

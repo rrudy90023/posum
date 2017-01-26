@@ -10,7 +10,16 @@ export default class Nav extends Component {
 
   render(){
     return(
-      <div></div>
+      <div>
+      
+        <ul>
+          <li><a href="#/">Home</a></li>
+          <li><a href="#/calendar">Calendar</a></li>
+          <li><a href="#/rsvp">Rsvp</a></li>
+          <li><a href="#/about">About</a></li>
+        </ul>
+      
+      </div>
     )
   }
 }

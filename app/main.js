@@ -49,6 +49,7 @@ ReactDOM.render(
 			<Route path="calendar" component={App} />
 			<Route path="rsvp" component={App} />
 			<Route path="about" component={App} />
+			<Route path="addevent" component={App} />
 			<Route path="*" component={Notfound} />
 		</Router>, document.getElementById('app')
 

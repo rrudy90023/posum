@@ -11,6 +11,7 @@ import About from './Components/About'
 import Calendar from './Components/Calendar'
 import Rsvp from './Components/Rsvp'
 import Data from './data.js'
+import AddEvent from './Components/AddEvent'
 
 export default class App extends Component {
     //displayName: 'App',
@@ -19,7 +20,20 @@ export default class App extends Component {
         this.state = {
             data: Data
         }
+        this.addEvent = this.addEvent.bind(this)
     }
+
+    addEvent(newEvent){
+        this.setState({
+            allEvents : [
+                ...this.state.data.calendar,
+                newEvent
+            ]
+
+        })
+    }
+
+
     render(){
         //console.log(Data)
           return (<div>
@@ -35,6 +49,9 @@ export default class App extends Component {
                 <About /> :
                 (this.props.location.pathname === "/rsvp") ?
                 <Rsvp members={this.state.data.members}/> :
+
+                (this.props.location.pathname === "/addevent") ?
+                <AddEvent onNewEvent={this.addEvent} /> :                
                 null}
 
             </div>)

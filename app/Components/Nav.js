@@ -17,6 +17,7 @@ export default class Nav extends Component {
           <li><a href="#/calendar">Calendar</a></li>
           <li><a href="#/rsvp">Rsvp</a></li>
           <li><a href="#/about">About</a></li>
+          <li><a href="#/addevent">Add Event</a></li>
         </ul>
       
       </div>

@@ -1,65 +1,72 @@
-import React, {PropTypes} from 'react'
-
+import React, {PropTypes, Component} from 'react'
+import ReactDOM from 'react-dom'   
+import { Router, Route, Link } from 'react-router'
 import Data from '../data.js'
 
+export default class AddEvent extends Component {
 
-export const AddEvent = ({ month, day, time, movie, location, address, onNewEvent  }) => {
 
-let _month, _day, _time, _movie, _location, _address
+constructor(props){
+    super(props)
+    this.submit = this.submit.bind(this)
+    this.state = {
+        data: props.data,
 
-// constructor(props){
-//     super(props)
-//     this.submit = this.submit.bind(this)
-//     this.state = {
-//         data: props.data,
-
-//     }
-// }
-
-const submit = (e) => {
-    e.preventDefault()
-    onNewEvent({
-        month: _month.value,
-        day: _day.value,
-        time: _time.value,
-        movie: _movie.value,
-        location: _location.value,
-        address: _address.value
-    })
-        _month.value = ''
-        _day.value = ''
-        _time.value = ''
-        _movie.value = ''
-        _location.value = ''
-        _address.value = ''
+    }
 }
 
 
 
+
+submit(e){
+    e.preventDefault()
+    this.props.onNewEvent({
+        month: this.refs.month.value,
+        day: this.refs.day.value,
+        time: this.refs.time.value,
+        movie: this.refs.movie.value,
+        location: this.refs.location.value,
+        address: this.refs.address.value
+    })
+        this.refs.month.value = ''
+        this.refs.day.value = ''
+        this.refs.time.value = ''
+        this.refs.movie.value = ''
+        this.refs.location.value = ''
+        this.refs.address.value = ''
+}
+
+
+render(){
+
+    console.log(this.props)
+
+    const { month, day, time, movie, location, address, onNewEvent } = this.props
+
     return(
-        <form onSubmit={submit}>
+        <form onSubmit={this.submit}>
             <label htmlFor="month">Month</label>
-            <input id="month" type="text" required defaultValue={month} ref={input => _month = input}/>
+            <input id="month" type="text" required defaultValue={month} ref="month"/>
 
             <label htmlFor="day">Day</label>
-            <input id="day" type="text" required defaultValue={day} ref={input => _day = input}/>
+            <input id="day" type="text" required defaultValue={day} ref="day"/>
 
             <label htmlFor="time">Time</label>
-            <input id="time" type="text" required defaultValue={time} ref={input => _time = input}/>
+            <input id="time" type="text" required defaultValue={time} ref="time"/>
 
             <label htmlFor="movie">Movie</label>
-            <input id="movie" type="text" required defaultValue={movie} ref={input => _movie = input}/>
+            <input id="movie" type="text" required defaultValue={movie} ref="movie"/>
 
             <label htmlFor="location">Location</label>
-            <input id="location" type="text" required defaultValue={location} ref={input => _location = input}/>
+            <input id="location" type="text" required defaultValue={location} ref="location"/>
 
             <label htmlFor="address" >Address</label>
-            <input id="address" type="text" required defaultValue={address} ref={input => _address = input}/>
+            <input id="address" type="text" required defaultValue={address} ref="address"/>
             <button>Add Event</button>
         </form>
     )
 }
-
+}
 
 AddEvent.defaultProps = {
     month: "March",

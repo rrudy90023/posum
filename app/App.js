@@ -29,13 +29,14 @@ export default class App extends Component {
                 ...this.state.data.calendar,
                 newEvent
             ]
-
         })
     }
 
+    
+
 
     render(){
-        //console.log(Data)
+        
           return (<div>
               <Favicon url={ faviconUrl }/>  
               <Header/>

@@ -13,7 +13,7 @@ export default class Calendar extends Component {
   }
 
   render(){  
-    console.log("calendar", this.props)
+    //console.log("calendar", this.props)
     return(
       <div>
       {this.props.calendar.map((days, index) => 

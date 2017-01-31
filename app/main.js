@@ -14,57 +14,89 @@ import constants from './constants'
 import {totalattendance, members} from './data'
 import {headcount} from './store/reducers'
 import {addmovie} from './store/reducers'
+import {allDates} from './store/reducers'
+import appReducer from './store/reducers'
 
+import Data from './data.js'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'redux'
 
 
 
 
-const state = 0
+// const state = 0
+// const action = {
+// 	type: constants.ADD_ATTENDEE,
+// 	payload: 15
+// }
+
+// const nextState = headcount(state, action)
+
+
+// //////////
+
+// const datestate = null
+// const dateaction = {
+// 	type: constants.ADD_DATE,
+// 	payload: {
+// 		    "month": "June",
+// 			"day": "6",
+// 			"time": "19hrs",
+// 			"movie": "Victoria",
+// 			"location": "City Terrace",
+// 			"address": "666 Satan St."
+// 	}
+
+// }
+
+// const movieState = addmovie(datestate, dateaction)
+// console.log(`
+// 			initial: ${datestate}
+// 			=================
+// 			action: ${JSON.stringify(dateaction)}
+// 			=================
+// 			new state ${JSON.stringify(movieState)}
+// `)
+
+
+// console.log(`
+// 			initial: ${state}
+// 			=================
+// 			action: ${JSON.stringify(action)}
+// 			=================
+// 			new state ${nextState}
+// `)
+const state = [
+	{
+		"month": "May",
+        "day": "24",
+        "time": "20hrs",
+        "movie": "Do the Right Thing",
+        "location": "Plaza De La Raza",
+        "address":"" 
+	}
+]
+
 const action = {
-	type: constants.ADD_ATTENDEE,
-	payload: 15
-}
-
-const nextState = headcount(state, action)
-
-
-//////////
-
-const datestate = null
-const dateaction = {
 	type: constants.ADD_DATE,
 	payload: {
-		    "month": "June",
-			"day": "6",
-			"time": "19hrs",
-			"movie": "Victoria",
-			"location": "City Terrace",
-			"address": "666 Satan St."
+		"month": "Jan",
+        "day": "11",
+        "time": "20hrs",
+        "movie": "Manhattan",
+        "location": "Talpa",
+        "address": ""
 	}
-
 }
 
-const movieState = addmovie(datestate, dateaction)
-console.log(`
-			initial: ${datestate}
-			=================
-			action: ${JSON.stringify(dateaction)}
-			=================
-			new state ${JSON.stringify(movieState)}
-`)
 
+const nextState = allDates(state, action)
 
 console.log(`
-			initial: ${state}
-			=================
-			action: ${JSON.stringify(action)}
-			=================
-			new state ${nextState}
+			${JSON.stringify(Data.members)}
+			==================
+		
 `)
-
-
 
 ReactDOM.render(
  

@@ -13,18 +13,13 @@ import Notfound from './Components/Notfound'
 import constants from './constants'
 import {totalattendance, members} from './data'
 import {headcount} from './store/reducers'
+import {addmovie} from './store/reducers'
 
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'redux'
 
 
-console.log(`
-			${Object.keys(constants).join('\n')}
-			==============
-			${members.length}
-			==============
-			${totalattendance}
-`)
+
 
 const state = 0
 const action = {
@@ -33,6 +28,34 @@ const action = {
 }
 
 const nextState = headcount(state, action)
+
+
+//////////
+
+const datestate = null
+const dateaction = {
+	type: constants.ADD_DATE,
+	payload: {
+		    "month": "June",
+			"day": "6",
+			"time": "19hrs",
+			"movie": "Victoria",
+			"location": "City Terrace",
+			"address": "666 Satan St."
+	}
+
+}
+
+const movieState = addmovie(datestate, dateaction)
+console.log(`
+			initial: ${datestate}
+			=================
+			action: ${JSON.stringify(dateaction)}
+			=================
+			new state ${JSON.stringify(movieState)}
+`)
+
+
 console.log(`
 			initial: ${state}
 			=================
@@ -40,6 +63,7 @@ console.log(`
 			=================
 			new state ${nextState}
 `)
+
 
 
 ReactDOM.render(

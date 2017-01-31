@@ -7,3 +7,14 @@ export const headcount = (state, action) => {
         return state
     }
 }
+
+
+export const addmovie = (datestate, dateaction) => {
+    if(dateaction.type === constants.ADD_DATE) {
+        return dateaction.payload
+    } else {
+        return datestate
+    }
+
+
+}

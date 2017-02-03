@@ -24,6 +24,8 @@ export default class App extends Component {
     }
 
     addEvent(newEvent){
+        console.log(newEvent)
+
         this.setState({
             allEvents : [
                 ...this.state.data.calendar,
@@ -36,6 +38,8 @@ export default class App extends Component {
 
 
     render(){
+        
+
         
           return (<div>
               <Favicon url={ faviconUrl }/>  

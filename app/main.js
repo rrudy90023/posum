@@ -11,19 +11,35 @@ import About from './Components/About'
 import App from './App.js'
 import Notfound from './Components/Notfound'
 import constants from './constants'
-import {totalattendance, members} from './data'
-import {headcount} from './store/reducers'
-import {addmovie} from './store/reducers'
-import {allDates} from './store/reducers'
+//import {totalattendance, members} from './data'
+// import {headcount} from './store/reducers'
+// import {addmovie} from './store/reducers'
+// import {allDates} from './store/reducers'
 import appReducer from './store/reducers'
 
-import Data from './data.js'
+import initialState from './data.js'
 import { createStore, applyMiddleware } from 'redux'
-import { Provider } from 'redux'
+// import { Provider } from 'redux'
 
 
 
+const store = createStore(appReducer, initialState)
 
+console.log('initial state', store.getState())
+
+store.dispatch({
+	type: constants.ADD_DATE,
+	payload: {
+		"month": "Jan",
+        "day": "2",
+        "time": "20hrs",
+        "movie": "Green Room",
+        "location": "Pecan",
+        "address": ""
+	}
+})
+
+console.log('next state', store.getState())
 // const state = 0
 // const action = {
 // 	type: constants.ADD_ATTENDEE,
@@ -66,37 +82,50 @@ import { Provider } from 'redux'
 // 			=================
 // 			new state ${nextState}
 // `)
-const state = [
-	{
-		"month": "May",
-        "day": "24",
-        "time": "20hrs",
-        "movie": "Do the Right Thing",
-        "location": "Plaza De La Raza",
-        "address":"" 
-	}
-]
 
-const action = {
-	type: constants.ADD_DATE,
-	payload: {
-		"month": "Jan",
-        "day": "11",
-        "time": "20hrs",
-        "movie": "Manhattan",
-        "location": "Talpa",
-        "address": ""
-	}
-}
+// let state = initialState
+
+// console.log(`
+// 	Initial State
+// 	================
+// 	headcount: ${state.totalattendance}
+// 	================
+// 	alldates: ${JSON.stringify(state.calendar)}
+
+// `)
 
 
-const nextState = allDates(state, action)
 
-console.log(`
-			${JSON.stringify(Data.members)}
-			==================
+// state = appReducer(state, {
+// 	type: constants.ADD_DATE,
+// 	payload: {
+// 		"month": "Jan",
+//         "day": "11",
+//         "time": "20hrs",
+//         "movie": "Manhattan",
+//         "location": "Talpa",
+//         "address": ""
+// 	}
+// })
+
+// state = appReducer(state, {
+// 	type: constants.ADD_ATTENDEE,
+// 	payload: 89
+// })
+// //const nextState = allDates(state, action)
+
+// console.log(`
+// 	Next State
+// 	================
+// 	headcount: ${state.totalattendance}
+// 	================
+// 	alldates: ${JSON.stringify(state.calendar)}
+
+// `)
+
+
 		
-`)
+
 
 ReactDOM.render(
  

@@ -69,12 +69,12 @@ render(){
 }
 
 AddEvent.defaultProps = {
-    month: "March",
-    day: "30",
-    time: "19hrs",
-    movie: "Victoria",
-    location: "City Terrace",
-    address: "666 Satan St."
+    month: "",
+    day: "",
+    time: "",
+    movie: "",
+    location: "",
+    address: ""
 }
 
 AddEvent.propTypes = {

@@ -19,27 +19,21 @@ import appReducer from './store/reducers'
 
 import initialState from './data.js'
 import { createStore, applyMiddleware } from 'redux'
-// import { Provider } from 'redux'
+import { Provider } from 'react-redux'
 
 
 
-const store = createStore(appReducer, initialState)
+const store = createStore(appReducer)
 
-console.log('initial state', store.getState())
+store.subscribe(()=> console.log(JSON.stringify(store.getState())))
+
 
 store.dispatch({
 	type: constants.ADD_DATE,
-	payload: {
-		"month": "Jan",
-        "day": "2",
-        "time": "20hrs",
-        "movie": "Green Room",
-        "location": "Pecan",
-        "address": ""
-	}
+	state:initialState.calendar
 })
 
-console.log('next state', store.getState())
+
 // const state = 0
 // const action = {
 // 	type: constants.ADD_ATTENDEE,
@@ -128,7 +122,7 @@ console.log('next state', store.getState())
 
 
 ReactDOM.render(
- 
+		<Provider store={store}>
 		<Router>
 			<Route path="/" component={App}/>
 			<Route path="calendar" component={App} />
@@ -136,7 +130,7 @@ ReactDOM.render(
 			<Route path="about" component={App} />
 			<Route path="addevent" component={App} />
 			<Route path="*" component={Notfound} />
-		</Router>, document.getElementById('app')
+		</Router></Provider>, document.getElementById('app')
 
 )
 

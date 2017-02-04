@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom'
 import { Router, Route, Link } from 'react-router'
 import Data from '../data.js'
 
-export default class Calendar extends Component {
+
+import { connect } from 'react-redux'
+
+class Calendar extends Component {
 
   constructor(props){
     super(props)
@@ -13,7 +16,7 @@ export default class Calendar extends Component {
   }
 
   render(){  
-    //console.log("calendar", this.props)
+    console.log()
     return(
       <div>
       {this.props.calendar.map((days, index) => 
@@ -29,3 +32,5 @@ export default class Calendar extends Component {
     )
   }
 }
+
+export default connect((state)=> ({state: state}) )(Calendar)

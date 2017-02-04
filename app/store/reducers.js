@@ -1,5 +1,6 @@
 import constants from '../constants'
 import { combineReducers } from 'redux'
+import Data from '../data.js'
 
 export const totalattendance = (state=0, action) => {
     if (action.type === constants.ADD_ATTENDEE){
@@ -10,24 +11,26 @@ export const totalattendance = (state=0, action) => {
 }
 
 
-export const addmovie = (state=[], action) => {
-    if(action.type === constants.ADD_DATE) {
-        return action.payload
-    } else {
-        return state
-    }
-}
+// export const addmovie = (state=[], action) => {
+//     if(action.type === constants.ADD_DATE) {
+//         //console.log(action.payload)
+//         return {...state, }
+//     } else {
+//         //console.log(state)
+//         return state
+//     }
+// }
 
 
 export const calendar = (state=[], action) => {
 
     switch(action.type){
         case constants.ADD_DATE:
-
-        return [
-            ...state,
-            addmovie(null, action)
-        ]
+        
+        return {
+            ...action.state
+        }
+        
         default:
         return state
     }
@@ -36,6 +39,5 @@ export const calendar = (state=[], action) => {
 export default combineReducers ({
     
     totalattendance,
-    addmovie,
     calendar
 })

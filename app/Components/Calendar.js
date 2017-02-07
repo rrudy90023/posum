@@ -3,9 +3,16 @@ import ReactDOM from 'react-dom'
 import { Router, Route, Link } from 'react-router'
 import Data from '../data.js'
 
+import appReducer from '../store/reducers'
+import constants from '../constants'
+import initialState from '../data.js'
+import { createStore, applyMiddleware } from 'redux'
+import { connect, Provider } from 'react-redux'
+import AddEvent from './AddEvent'
 
-import { connect } from 'react-redux'
+const store = createStore(appReducer)
 
+store.subscribe(() => console.log(store.getState()))
 class Calendar extends Component {
 
   constructor(props){
@@ -16,8 +23,9 @@ class Calendar extends Component {
   }
 
   render(){  
-    console.log()
+
     return(
+      <Provider store={store}>
       <div>
       {this.props.calendar.map((days, index) => 
         <ul>
@@ -29,6 +37,7 @@ class Calendar extends Component {
         </ul>
         )}
       </div>
+      </Provider>
     )
   }
 }

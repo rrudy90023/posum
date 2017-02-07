@@ -1,26 +1,48 @@
 import React, {PropTypes, Component} from 'react'
 import ReactDOM from 'react-dom'   
 import { Router, Route, Link } from 'react-router'
-import Data from '../data.js'
 
-export default class AddEvent extends Component {
+
+import appReducer from '../store/reducers'
+import constants from '../constants'
+import initialState from '../data.js'
+import { createStore, applyMiddleware } from 'redux'
+import { connect, Provider } from 'react-redux'
+
+
+
+const store = createStore(appReducer)
+
+
+console.log(store.getState())
+class AddEvent extends Component {
 
 
 constructor(props){
     super(props)
-    this.submit = this.submit.bind(this)
+    
     this.state = {
         data: props.data,
-
     }
+    this.submit = this.submit.bind(this)
+    this.addEvent = this.addEvent.bind(this)
 }
 
+addEvent(newEvent){
+    store.dispatch({
+        type: constants.ADD_DATE,
+        payload:newEvent
+    })
+    
+}
 
 
 
 submit(e){
     e.preventDefault()
-    this.props.onNewEvent({
+    
+    this.addEvent({
+        
         month: this.refs.month.value,
         day: this.refs.day.value,
         time: this.refs.time.value,
@@ -34,16 +56,18 @@ submit(e){
         this.refs.movie.value = ''
         this.refs.location.value = ''
         this.refs.address.value = ''
+
+    console.log(store.getState())
 }
 
 
 render(){
 
-    console.log(this.props)
 
     const { month, day, time, movie, location, address, onNewEvent } = this.props
-
+     
     return(
+       
         <form onSubmit={this.submit}>
             <label htmlFor="month">Month</label>
             <input id="month" type="text" required defaultValue={month} ref="month"/>
@@ -67,6 +91,8 @@ render(){
     )
 }
 }
+
+export default connect( (state)=> ({state: state}) )(AddEvent)
 
 AddEvent.defaultProps = {
     month: "",

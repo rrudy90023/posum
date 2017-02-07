@@ -25,13 +25,13 @@ import { Provider } from 'react-redux'
 
 const store = createStore(appReducer)
 
-store.subscribe(()=> console.log(JSON.stringify(store.getState())))
 
 
-store.dispatch({
-	type: constants.ADD_DATE,
-	state:initialState.calendar
-})
+
+// store.dispatch({
+// 	type: constants.ADD_DATE,
+// 	state:initialState.calendar
+// })
 
 
 // const state = 0

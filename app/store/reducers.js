@@ -22,17 +22,17 @@ export const totalattendance = (state=0, action) => {
 // }
 
 
-export const calendar = (state=[], action) => {
-
+export const calendar = (state=null, action) => {
+    console.log('state',state, 'action',action)
     switch(action.type){
         case constants.ADD_DATE:
         
-        return {
-            ...action.state
-        }
+        return [
+            ...state,action.payload
+        ]
         
         default:
-        return state
+        return {...state}
     }
 } 
 

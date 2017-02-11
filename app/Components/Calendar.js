@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'   
-import { Router, Route, Link } from 'react-router'
+import { Router, Route, Link, IndexRoute, Redirect, browserHistory, useRouterHistory, hashHistory } from 'react-router'
 import Data from '../data.js'
 
 import appReducer from '../store/reducers'
@@ -9,10 +9,11 @@ import initialState from '../data.js'
 import { createStore, applyMiddleware } from 'redux'
 import { connect, Provider } from 'react-redux'
 import AddEvent from './AddEvent'
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 
 const store = createStore(appReducer)
 
-store.subscribe(() => console.log(store.getState()))
+store.subscribe(() => console.log(routerReducer))
 class Calendar extends Component {
 
   constructor(props){
@@ -23,7 +24,7 @@ class Calendar extends Component {
   }
 
   render(){  
-
+    console.log(store.getState())
     return(
       <Provider store={store}>
       <div>

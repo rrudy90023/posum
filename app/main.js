@@ -3,7 +3,7 @@ import "babel-polyfill"
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 import createBrowserHistory from 'history/lib/createBrowserHistory'
-import { Router, Route, Link, IndexRoute, Redirect } from 'react-router'
+import { Router, Route, Link, IndexRoute, Redirect, browserHistory, useRouterHistory, hashHistory } from 'react-router'
 import "./Assets/style.scss"
 import Calendar from './Components/Calendar'
 import Rsvp from './Components/Rsvp'
@@ -20,8 +20,7 @@ import appReducer from './store/reducers'
 import initialState from './data.js'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-
-
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 
 const store = createStore(appReducer)
 
@@ -118,12 +117,12 @@ const store = createStore(appReducer)
 // `)
 
 
-		
+const history = syncHistoryWithStore(hashHistory, store)	
 
 
 ReactDOM.render(
 		<Provider store={store}>
-		<Router>
+		<Router history={history}>
 			<Route path="/" component={App}/>
 			<Route path="calendar" component={App} />
 			<Route path="rsvp" component={App} />

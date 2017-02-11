@@ -41,7 +41,7 @@ addEvent(newEvent){
 submit(e){
     e.preventDefault()
     
-    this.addEvent({
+    this.props.onNewEvent({
         
         month: this.refs.month.value,
         day: this.refs.day.value,
@@ -50,6 +50,16 @@ submit(e){
         location: this.refs.location.value,
         address: this.refs.address.value
     })
+
+    this.addEvent({
+        month: this.refs.month.value,
+        day: this.refs.day.value,
+        time: this.refs.time.value,
+        movie: this.refs.movie.value,
+        location: this.refs.location.value,
+        address: this.refs.address.value
+    });
+
         this.refs.month.value = ''
         this.refs.day.value = ''
         this.refs.time.value = ''

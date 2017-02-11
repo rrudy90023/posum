@@ -2,7 +2,17 @@ import React, {Component} from 'react'
 import ReactDOM from 'react-dom'   
 import { Router, Route, Link } from 'react-router'
 
-export default class Rsvp extends Component {
+import appReducer from '../store/reducers'
+import constants from '../constants'
+import initialState from '../data.js'
+import { createStore, applyMiddleware } from 'redux'
+import { connect, Provider } from 'react-redux'
+
+
+const store = createStore(appReducer)
+console.log(store.getState())
+
+class Rsvp extends Component {
 
   constructor(props){
     super(props)
@@ -11,8 +21,16 @@ export default class Rsvp extends Component {
     }
   }
 
+addPerson(){
+  store.dispatch({
+    type: constants.ADD_ATTENDEE,
+    payload: 1
+  })
+  console.log("addadd", store.getState())
+}
+
   render(){
-      console.log("rsvp", this.props)
+      
     return(
       <div>
       {this.props.members.map((people, index) =>
@@ -22,9 +40,12 @@ export default class Rsvp extends Component {
           <span>{people.email}</span>
           </li>
         </ul>
-        )}
+        )}  
+        <div onClick={this.addPerson } >Add Attendee</div>
       
       </div>
     )
   }
 }
+
+export default connect( (state)=> ({state: state}) )(Rsvp)

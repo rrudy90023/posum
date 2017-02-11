@@ -20,17 +20,18 @@ export default class App extends Component {
         this.state = {
             data: Data
         }
-        //this.addEvent = this.addEvent.bind(this)
+        this.addEvent = this.addEvent.bind(this)
     }
 
-    // addEvent(newEvent){
-    //     this.setState({
-    //         allEvents : [
-    //             ...this.state.data.calendar,
-    //             newEvent
-    //         ]
-    //     })
-    // }
+    addEvent(newEvent){
+        console.log(newEvent)
+        this.setState({
+            allEvents : [
+                ...this.state.data.calendar,
+                newEvent
+            ]
+        })
+    }
 
     
 
@@ -54,7 +55,7 @@ export default class App extends Component {
                 <Rsvp members={this.state.data.members}/> :
 
                 (this.props.location.pathname === "/addevent") ?
-                <AddEvent calendar={this.state.data.calendar} /> :                
+                <AddEvent onNewEvent={this.addEvent} calendar={this.state.data.calendar}/> :                
                 null}
 
             </div>)
